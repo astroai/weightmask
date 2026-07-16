@@ -232,7 +232,7 @@ def detect_objects(data_sub, bkg_rms_map, existing_mask, config):
                         object_mask[ystart : yend + 1, max(0, xc - hw) : min(w, xc + hw + 1)] = True
 
             # Only return newly detected pixels (not already in existing_mask)
-            m_orig = existing_mask.astype(bool) if existing_mask is not None else np.zeros_like(object_mask)
+            m_orig = existing_mask if existing_mask is not None else np.zeros_like(object_mask)
             obj_add_mask = object_mask & (~m_orig)
             return obj_add_mask
 
